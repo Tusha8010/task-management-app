@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Edit Task{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mx-auto" style="max-width:500px;">
+    <div class="card-body">
+        <h4>Edit Task</h4>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="title" value="{{ task.title }}" class="form-control mb-2">
+            <textarea name="description" class="form-control mb-2">{{ task.description }}</textarea>
+            <button class="btn btn-success">Update</button>
+            <a href="{% url 'tasks:dashboard' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

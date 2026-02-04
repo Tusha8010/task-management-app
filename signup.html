@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <h3 class="text-center mb-3">Create Account 📝</h3>
+                <p class="text-center text-muted mb-4">
+                    Start managing your tasks
+                </p>
+
+                <!-- Messages (Success / Error) -->
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                            <div class="alert alert-success text-center">
+                                {{ message }}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-danger text-center">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Signup Form -->
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text"
+                               name="username"
+                               class="form-control"
+                               placeholder="Choose a username"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password"
+                               name="password1"
+                               class="form-control"
+                               placeholder="Create a password"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password"
+                               name="password2"
+                               class="form-control"
+                               placeholder="Confirm password"
+                               required>
+                    </div>
+
+                    <button class="btn btn-success w-100">
+                        Signup
+                    </button>
+                </form>
+
+                <hr>
+
+                <p class="text-center mb-0">
+                    Already have an account?
+                    <a href="{% url 'login' %}">Login</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
